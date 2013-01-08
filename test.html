@@ -1,0 +1,15 @@
+<script type="text/javascript" src="./tools.js"></script>
+<script type="text/javascript">
+var a = [{iid:"111",name:"it is a1",g_id:["1","4"]},{iid:"112",name:"it is a2",g_id:["2"]},{iid:"113",name:"it is a3",g_id:["3"]}];
+var b = [{iid:"111",name:"it is b1",g_id:["6"]},{iid:"114",name:"it is b2",g_id:["4"]},{iid:"115",name:"it is a3",g_id:["1"]}];
+
+var c = _BFD.del_same(a,"iid",2);
+var d = _BFD.del_same(b,"iid");
+
+var e = _BFD.del_same(a,"name");
+var f = _BFD.del_same(b,"name");
+
+var g = _BFD.del_same(a,"g_id");
+var h = _BFD.del_same(b,"g_id");
+
+</script>
