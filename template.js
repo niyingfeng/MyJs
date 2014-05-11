@@ -26,7 +26,7 @@
     };
 
 
-    return function( tmpl, data ){
+    function template( tmpl, data ){
         var tmplStr = "_s+='",
             index = 0, len = tmpl.length;
 
@@ -53,6 +53,16 @@
         var tmplFunc = new Function( "data", tmplStr );
 
         return data ? tmplFunc( data ) : tmplFunc;
+    }
+
+    if( window.define ){
+    	define('template', function(){
+    		return template;
+    	});
+    }else if( window.jQuery && !jQuery.template){
+    	jQuery.template = template;
+    }else if( !window.template ){
+    	window.template = template;
     }
 
 })();
