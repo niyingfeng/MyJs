@@ -33,7 +33,7 @@
         var c = tmpl.replace( transformReg, 'a');
         tmpl.replace( transformReg, function( match, escape, unescape, normal, offset){
 
-            tmplStr += tmpl.slice(index, offset);
+            tmplStr += tmpl.slice(index, offset).replace(/'/g,"\\'");
 
             if( escape ){
                 tmplStr += "';\n_s+=((" + escape + ")==null?'':esacpeFunc(" + escape + "));\n_s+='"
@@ -50,9 +50,13 @@
 
         tmplStr = "var _s='';\n with(data){\n "+ tmplStr +"}\n return _s;";
 
-        var tmplFunc = new Function( "data", tmplStr );
+        var tmplFunc = new Function( "data", "esacpeFunc", tmplStr ),
 
-        return data ? tmplFunc( data ) : tmplFunc;
+        rander = function( data ){
+        	return tmplFunc( data, esacpeFunc );
+        }
+
+        return data ? rander( data ) : rander;
     }
 
     if( window.define ){
@@ -60,9 +64,11 @@
     		return template;
     	});
     }else if( window.jQuery && !jQuery.template){
-    	jQuery.template = template;
+    	jQuery.extend({ template : template });
     }else if( !window.template ){
     	window.template = template;
+    }else{
+    	throw new Error('template lib has error');
     }
 
 })();

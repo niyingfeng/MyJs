@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+
+<script src="../template.js"></script>
+
+</head>
+<body>
+
+<div id="container"></div>
+<div id="container2"></div>
+
+<script type="text/javascript">
+	var tmpl = template( "<div>this is <%= name %></div>\
+						  <div class='a'>she is <%= age %></div>\
+						  <P><%= content %></P>\
+						  <P><%- title %></P>" ),
+		t1 = tmpl({ 'name':'jack', age:'14',content:'aa>sss',title:'dd<sss' }),
+		t2 = tmpl({ 'name':'mary', age:'16',content:'\"ss>ss',title:'dsjje<ss' });
+
+
+</script>
+</body>
+</html>
