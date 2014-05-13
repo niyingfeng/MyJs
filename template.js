@@ -56,6 +56,9 @@
         	return tmplFunc( data, esacpeFunc );
         }
 
+        // 方便调试
+        //rander.tmplFunc = tmplFunc;
+
         return data ? rander( data ) : rander;
     }
 
