@@ -5,7 +5,7 @@ MyJs
 
 template.js  js模板引擎
 
-var tmplHTML = '<P><%- title %></P><% if(content){ %><P><%= content %></P><% } %>',
+var tmplHTML = '&lt;P&gt;<%- title %>&lt;/P&gt;<% if(content){ %>&lt;P&gt;<%= content %>&lt;/P&gt;<% } %>',
                 
     tmplFunc = template( tmplHTML ),
     
