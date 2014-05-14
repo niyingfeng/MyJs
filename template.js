@@ -1,4 +1,6 @@
 (function(){
+
+    // html转义映射对象
     var escapeMap = {
             '&' : '&amp;',
             '<' : '&lt;',
@@ -7,8 +9,10 @@
             "'" : '&#x27;'
         },
 
+        // html转义正则
         escapeReg = /[&<>"\']/g,
 
+        // 变量以及语句语法正则
         transformMethod = {
             escape : '<%=([\\s\\S]+?)%>',
             unescape : '<%-([\\s\\S]+?)%>',
@@ -19,13 +23,16 @@
             transformMethod.unescape,
             transformMethod.normal].join('|'), 'g');
 
+    // html转义方法
     var esacpeFunc = function( str ){
         return str.replace( escapeReg, function( match ){
             return escapeMap[ match ];
         } );
     };
 
-
+    // 主要逻辑为根据提供的模板进行生成 new Function 的 字符串函数体
+    // 利用 replace 的 function参数形式处理
+    // 使用闭包形式使得 new Function出来的function 可以使用当前作用域数据
     function template( tmpl, data ){
         var tmplStr = "_s+='",
             index = 0, len = tmpl.length;
@@ -62,6 +69,7 @@
         return data ? rander( data ) : rander;
     }
 
+    // 使其适应不同架构形式 还不是很好 需要调整
     if( window.define ){
     	define('template', function(){
     		return template;
@@ -71,7 +79,7 @@
     }else if( !window.template ){
     	window.template = template;
     }else{
-    	throw new Error('template lib has error');
+    	throw new Error('template lib no export way');
     }
 
 })();
