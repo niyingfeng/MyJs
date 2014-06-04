@@ -70,7 +70,7 @@
     }
 
     // 使其适应不同架构形式 还不是很好 需要调整
-    if( window.define ){
+    if( typeof define === function && defined.amd ){
     	define('template', function(){
     		return template;
     	});
