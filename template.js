@@ -46,7 +46,8 @@
 
     // html转义方法
     var esacpeFunc = function( str ){
-        return str.replace( escapeReg, function( match ){
+        str = 
+        return str.toString().replace( escapeReg, function( match ){
             return escapeMap[ match ];
         } );
     };
