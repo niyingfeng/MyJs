@@ -28,9 +28,9 @@
         defExpired = 7 * dayMS;
 
     function setCookie( name, val, options ){
-        options = (typeof( options ) === "object") ? options : {} ;
+        options = (typeof( options ) === "object") ? options : { expires : options } ;
 
-        var expires = options.expires ? options.expires * dayMS : defExpired;
+        var expires = options.expires !== undefined ? options.expires * dayMS : defExpired;
         expires = ";expires="+(new Date( +new Date() + expires)).toGMTString();
 
         var path = options.path;
