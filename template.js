@@ -10,14 +10,14 @@
         jQuery.template = tmpl;
 
         jQuery.template.noConflict = function () {
-            $.template = old;
+            jQuery.template = old;
             return tmpl;
         }
 
     }else if( !window.template ){
         window.template = template();
     }else{
-        throw new Error('template lib no export way');
+        throw new Error('Variable template is already exit in window');
     }
 }(function(){
 
@@ -46,7 +46,6 @@
 
     // html转义方法
     var esacpeFunc = function( str ){
-        str = 
         return str.toString().replace( escapeReg, function( match ){
             return escapeMap[ match ];
         } );
