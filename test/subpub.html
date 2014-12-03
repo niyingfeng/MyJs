@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+
+<script src="../subpub.js"></script>
+
+</head>
+<body>
+
+<div id="container"></div>
+<div id="container2"></div>
+
+<script type="text/javascript">
+ var sp = window.subpub;
+
+ var a1 = sp.creatPublisher(), a2 = sp.creatPublisher(), a3 = sp.creatPublisher();
+ var b1 = sp.creatSubscriber(function(a){ console.log('b1 '+a) }),
+     b2 = sp.creatSubscriber(function(a){ console.log('b2 '+a) }), 
+     b3 = sp.creatSubscriber(function(a){ console.log('b3 '+a) });
+
+ 	a1.addSubscriber(b1)
+ 	a1.addSubscriber(b3)
+	a2.addSubscriber(b2)
+	a3.addSubscriber(b1)
+	a3.addSubscriber(b2)
+	a3.addSubscriber(b3)
+//
+//
+	a1.publish("this is a1 publish")    
+//  >   "b1 this is a1 publish"
+//  >   "b3 this is a1 publish" 
+//
+	a3.deleteSubscriber(b1)
+	a3.deleteSubscriber(b2)
+	a3.publish("this is a3 publish")
+//  >   "b3this is a3 publish"
+//
+	b3.unsubscribe(a3)
+	b2.subscribe(a3)
+	a3.publish("this is a3 publish")
+//  >   "b2 this is a3 publish"
+
+</script>
+</body>
+</html>

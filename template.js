@@ -1,5 +1,5 @@
 (function( template ){
-    if( typeof define === "function" && defined.amd ){
+    if( typeof define === "function" && define.amd ){
 
         define( template );
 

@@ -2,7 +2,7 @@
 // 返回包含 cookie 与 removeCookie 方法的对象
 
 (function( cookie ){
-    if( typeof define === "function" && defined.amd ){
+    if( typeof define === "function" && define.amd ){
 
         define( cookie );
 
